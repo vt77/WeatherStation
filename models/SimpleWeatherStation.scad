@@ -21,8 +21,10 @@ fletching_depth  = 20;
 head_bearing_stopper_h = 8;
 hallunit_outer = 5;
 
+model = "anemometer_base";
 
-module cap_holder(preview=false)
+
+module cup_holder(preview=false)
 {
   
   holder_len=11;
@@ -71,16 +73,7 @@ CubeFaces = [
      {
         rotate([0,90,i*120])
         translate([-2,0,10])
-        color(c=[1,1,1])
-        cylinder(d=4,h=20,$fn=25);
-        rotate([195,90,i*120])
-        translate([-3,43,10])
-        color(c=[0.9,0.6,0])
-        difference(){
-            sphere(d=30,$fn=50);
-            translate([0,0,1])
-            sphere(d=30,$fn=50);
-        }
+        anemometer_cup();
      }
   } 
  
@@ -144,18 +137,31 @@ module circle_chamfer_cylinder(d=20,h)
     cylinder(d=d,h=h-chamfer_diam/2,center=false,$fn=100); 
 }
 
+module anemometer_cup()
+{
+     cylinder(d=4,h=20,$fn=25);
+     rotate([195,90,i*120])
+     translate([-3,43,10])
+     //color(c=[0.9,0.6,0])
+     difference(){
+        sphere(d=30,$fn=50);
+        translate([0,0,1])
+        sphere(d=30,$fn=50);
+     }
+}
+
 
 module anemometer_head(preview=false)
 {
    difference(){
     union(){
-        //cap_holder();
+        //cup_holder();
         rotate([0,180,0])
         translate([0,0,-head_height+3])
         chamfer_cylinder(d=stand_outer,h=head_height);
             rotate([0,180,0])
             translate([0,0,-5])
-            cap_holder(preview);
+            cup_holder(preview);
     }
     translate([0,0,0])
     cylinder(d=bearing_outer,h=20,center=false,$fn=100);
@@ -254,30 +260,18 @@ module windvane_head(preview=false)
   
 }
 
-
-/*
-
-//Base draw
-difference(){
-    base(true);
-    //translate([0,0,36.3])
-    //#bearing(pos=[0,0,-13.5],model=686);
-    translate([0,0,-50])
-    cube([100,100,100]);
-}
-
-
-//Head draw
-difference(){
-    head(false);
-    //translate([0,0,-50])
-    //cube([100,100,100]);
-}
-*/
-
-//rotate([0,180,0])
-//anemometer_head(true);
-//windvane_head(preview=true);
+if (model == "anemometer_base")
+    anemometer_base();
+else if (model == "anemometer_head")
+    anemometer_head();
+else if (model == "anemometer_head")
+    anemometer_head();
+else if (model == "anemometer_cup")
+    anemometer_cup();
+else if (model == "windvane_head")
+    windvane_head();
+else if (model == "windvane_base")
+    windvane_base();
 
 
 
