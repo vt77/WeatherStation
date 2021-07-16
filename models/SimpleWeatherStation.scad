@@ -139,10 +139,13 @@ module circle_chamfer_cylinder(d=20,h)
 
 module anemometer_cup()
 {
-     cylinder(d=4,h=20,$fn=25);
-     rotate([195,90,i*120])
+     rotate([0,90,86])
+     translate([-8.5,6,8])
+     difference(){
+        cylinder(d=4,h=20,$fn=60);
+        cylinder(d=2,h=16,$fn=60);
+     }
      translate([-3,43,10])
-     //color(c=[0.9,0.6,0])
      difference(){
         sphere(d=30,$fn=50);
         translate([0,0,1])
@@ -263,6 +266,7 @@ module windvane_head(preview=false)
 if (model == "anemometer_base")
     anemometer_base();
 else if (model == "anemometer_head")
+    rotate([180,0,0])
     anemometer_head();
 else if (model == "anemometer_head")
     anemometer_head();
