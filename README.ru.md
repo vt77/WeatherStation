@@ -105,7 +105,7 @@
 
 * [Прошивка для ESP8266](https://github.com/vt77/WeatherStation-firmware-esp)
 * [Счётчик для анемометра pic12](https://github.com/vt77/PIC12Counter)
-* Счётчик для анемометра attiny13 (coming soon)
+* [Счётчик для анемометра attiny13] (https://github.com/vt77/attiny13Counter)
 * [Народный мониторинг narodmon.ru](https://narodmon.ru/)
 
 # Фото 
